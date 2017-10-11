@@ -56,10 +56,16 @@ public class Game {
 
     public void move(int columnFrom, int columnTo) {
         // remove the top card from the columnFrom column, add it to the columnTo column
-        addCardToCol(columnTo, getTopCard(columnFrom));
-        // removing the top card from the previous column
-        remove(columnFrom);
-
+        if(!columnHasCards(columnTo))
+            {
+            System.out.println("This column has cards. This is an invaild move");
+        }
+        else
+        {
+            addCardToCol(columnTo, getTopCard(columnFrom));
+            // removing the top card from the previous column
+            remove(columnFrom);
+        }
     }
 
     private void addCardToCol(int columnTo, Card cardToMove) {
