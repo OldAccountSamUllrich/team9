@@ -31,8 +31,18 @@ public class Game {
         // shuffles the deck so that it is random
     }
 
-    public void dealFour() {
+    public void dealFour() 
+    {
         // remove the top card from the deck and add it to a column; repeat for each of the four columns
+        for (int i = 0; i < 4; i++)
+        {
+            int cardsInDeck = deck.size();
+            Card topCard = deck.get(deck.size() - 1);
+            cols.get(i).add(topCard);
+            deck.subList(cardsInDeck, cardsInDeck - 1);
+            //deck.remove(topCard);
+            //deck.trimToSize();
+        }
     }
 
     public void remove(int columnNumber) {
