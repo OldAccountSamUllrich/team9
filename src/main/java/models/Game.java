@@ -74,12 +74,12 @@ public class Game {
         if(columnFrom < 0 || columnFrom > 3 )
         {
             //check to make sure the columnFrom is a valid column number
-            System.out.println("In the 'From' field, you have entered a incorrect column number\n Column numbers range from the interger values 0 - 3")
+            System.out.println("In the 'From' field, you have entered a incorrect column number\n Column numbers range from the interger values 0 - 3");
         }
         if(columnTo < 0 || columnTo > 3 )
         {
             //check to make sure the columnTo is a valid column number
-            System.out.println("In the 'To' field, you have entered a incorrect column number\n Column numbers range from the interger values 0 - 3")
+            System.out.println("In the 'To' field, you have entered a incorrect column number\n Column numbers range from the interger values 0 - 3");
         }
         {
             addCardToCol(columnTo, getTopCard(columnFrom));
