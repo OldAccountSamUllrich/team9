@@ -16,7 +16,10 @@ public class Game {
 
     public Game(){
         // initialize a new game such that each column can store cards
-
+        cols.add(new ArrayList<Card>());
+        cols.add(new ArrayList<Card>());
+        cols.add(new ArrayList<Card>());
+        cols.add(new ArrayList<Card>());
 
     }
 
