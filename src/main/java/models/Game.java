@@ -37,10 +37,29 @@ public class Game {
 
     public void remove(int columnNumber) {
         // remove the top card from the indicated column
+        if(columnHasCards(columnNumber)) {
+            for (int i = 0; i <= 4; i++) {
+                if (i == columnNumber) {
+                    //increase by one to not be the same column
+                    i++;
+                }
+                //checks suit and value
+                if (getTopCard(columnNumber).suit == getTopCard(i).suit) {
+                    if (getTopCard(columnNumber).value < getTopCard(i).value) {
+                        removeCardFromCol(columnNumber);
+                        i = 4;
+                    }
+                }
+            }
+        }
+
     }
 
     private boolean columnHasCards(int columnNumber) {
         // check indicated column for number of cards; if no cards return false, otherwise return true
+        if(this.cols.get(columnNumber).size() > 0){
+                return true;
+        }
         return false;
     }
 
