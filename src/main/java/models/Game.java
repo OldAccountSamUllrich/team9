@@ -66,7 +66,21 @@ public class Game {
 
     public void move(int columnFrom, int columnTo) {
         // remove the top card from the columnFrom column, add it to the columnTo column
-        //Took out test for now
+        if(!columnHasCards(columnTo))
+        {
+            //Check to make sure the move is valid
+            System.out.println("This column has cards. This is an invaild move");
+        }
+        if(columnFrom < 0 || columnFrom > 3 )
+        {
+            //check to make sure the columnFrom is a valid column number
+            System.out.println("In the 'From' field, you have entered a incorrect column number\n Column numbers range from the interger values 0 - 3")
+        }
+        if(columnTo < 0 || columnTo > 3 )
+        {
+            //check to make sure the columnTo is a valid column number
+            System.out.println("In the 'To' field, you have entered a incorrect column number\n Column numbers range from the interger values 0 - 3")
+        }
         {
             addCardToCol(columnTo, getTopCard(columnFrom));
             // removing the top card from the previous column
