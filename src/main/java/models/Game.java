@@ -39,16 +39,45 @@ public class Game {
 
     }
 
-    public void dealFour() {
+    public void dealFour() 
+    {
         // remove the top card from the deck and add it to a column; repeat for each of the four columns
+        for (int i = 0; i < 4; i++)
+        {
+            int cardsInDeck = deck.size();
+            Card topCard = deck.get(deck.size() - 1);
+            cols.get(i).add(topCard);
+            deck.subList(cardsInDeck, cardsInDeck - 1);
+            //deck.remove(topCard);
+            //deck.trimToSize();
+        }
     }
 
     public void remove(int columnNumber) {
         // remove the top card from the indicated column
+        if(columnHasCards(columnNumber)) {
+            for (int i = 0; i <= 4; i++) {
+                if (i == columnNumber) {
+                    //increase by one to not be the same column
+                    i++;
+                }
+                //checks suit and value
+                if (getTopCard(columnNumber).suit == getTopCard(i).suit) {
+                    if (getTopCard(columnNumber).value < getTopCard(i).value) {
+                        removeCardFromCol(columnNumber);
+                        i = 4;
+                    }
+                }
+            }
+        }
+
     }
 
     private boolean columnHasCards(int columnNumber) {
         // check indicated column for number of cards; if no cards return false, otherwise return true
+        if(this.cols.get(columnNumber).size() > 0){
+                return true;
+        }
         return false;
     }
 
@@ -59,10 +88,24 @@ public class Game {
 
     public void move(int columnFrom, int columnTo) {
         // remove the top card from the columnFrom column, add it to the columnTo column
-        addCardToCol(columnTo, getTopCard(columnFrom));
-        // removing the top card from the previous column
-        remove(columnFrom);
-
+        if(!columnHasCards(columnTo))
+            {
+            System.out.println("This column has cards. This is an invaild move");
+        }
+        if(columnFrom < 0 || columnFrom > 3 )
+        {
+            System.out.println("In the 'From' field, you have entered a incorrect column number\n Column numbers range from the interger values 0 - 3")
+        }
+        if(columnTo < 0 || columnTo > 3 )
+        {
+            System.out.println("In the 'To' field, you have entered a incorrect column number\n Column numbers range from the interger values 0 - 3")
+        }
+        else
+        {
+            addCardToCol(columnTo, getTopCard(columnFrom));
+            // removing the top card from the previous column
+            remove(columnFrom);
+        }
     }
 
     private void addCardToCol(int columnTo, Card cardToMove) {
