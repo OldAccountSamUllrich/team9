@@ -11,15 +11,15 @@ public class Game {
 
     public java.util.List<Card> deck = new ArrayList<>();
 
-    public java.util.List<java.util.List<Card>> cols = new ArrayList<>(4);
+    public java.util.List<java.util.List<Card>> rows = new ArrayList<>(4);
 
 
     public Game(){
         // initialize a new game such that each column can store cards
-        cols.add(new ArrayList<Card>());
-        cols.add(new ArrayList<Card>());
-        cols.add(new ArrayList<Card>());
-        cols.add(new ArrayList<Card>());
+        rows.add(new ArrayList<Card>());
+        rows.add(new ArrayList<Card>());
+        rows.add(new ArrayList<Card>());
+        rows.add(new ArrayList<Card>());
 
     }
 
@@ -46,25 +46,25 @@ public class Game {
         {
             int cardsInDeck = deck.size();
             Card topCard = deck.get(deck.size() - 1);
-            cols.get(i).add(topCard);
+            rows.get(i).add(topCard);
             deck.subList(cardsInDeck, cardsInDeck - 1);
             //deck.remove(topCard);
             //deck.trimToSize();
         }
     }
 
-    public void remove(int columnNumber) {
+    public void remove(int rowNumber) {
         // remove the top card from the indicated column
-        if(columnHasCards(columnNumber)) {
+        if(columnHasCards(rowNumber)) {
             for (int i = 0; i <= 4; i++) {
-                if (i == columnNumber) {
+                if (i == rowNumber) {
                     //increase by one to not be the same column
                     i++;
                 }
                 //checks suit and value
-                if (getTopCard(columnNumber).suit == getTopCard(i).suit) {
-                    if (getTopCard(columnNumber).value < getTopCard(i).value) {
-                        removeCardFromCol(columnNumber);
+                if (getTopCard(rowNumber).suit == getTopCard(i).suit) {
+                    if (getTopCard(rowNumber).value < getTopCard(i).value) {
+                        removeCardFromCol(rowNumber);
                         i = 4;
                     }
                 }
@@ -73,48 +73,48 @@ public class Game {
 
     }
 
-    private boolean columnHasCards(int columnNumber) {
+    private boolean columnHasCards(int rowNumber) {
         // check indicated column for number of cards; if no cards return false, otherwise return true
-        if(this.cols.get(columnNumber).size() > 0){
+        if(this.rows.get(rowNumber).size() > 0){
                 return true;
         }
         return false;
     }
 
-    private Card getTopCard(int columnNumber) {
-        return this.cols.get(columnNumber).get(this.cols.get(columnNumber).size()-1);
+    private Card getTopCard(int rowNumber) {
+        return this.rows.get(rowNumber).get(this.rows.get(rowNumber).size()-1);
     }
 
 
-    public void move(int columnFrom, int columnTo) {
+    public void move(int rowFrom, int rowTo) {
         // remove the top card from the columnFrom column, add it to the columnTo column
-        if(!columnHasCards(columnTo))
+        if(!columnHasCards(rowTo))
         {
             //Check to make sure the move is valid
             System.out.println("This column has cards. This is an invaild move");
         }
-        if(columnFrom < 0 || columnFrom > 3 )
+        if(rowFrom < 0 || rowFrom > 3 )
         {
             //check to make sure the columnFrom is a valid column number
-            System.out.println("In the 'From' field, you have entered a incorrect column number\n Column numbers range from the interger values 0 - 3");
+            System.out.println("In the 'From' field, you have entered a incorrect row number\n Row numbers range from the interger values 0 - 3");
         }
-        if(columnTo < 0 || columnTo > 3 )
+        if(rowTo < 0 || rowTo > 3 )
         {
             //check to make sure the columnTo is a valid column number
-            System.out.println("In the 'To' field, you have entered a incorrect column number\n Column numbers range from the interger values 0 - 3");
+            System.out.println("In the 'To' field, you have entered a incorrect row number\n Row numbers range from the interger values 0 - 3");
         }
         {
-            addCardToCol(columnTo, getTopCard(columnFrom));
+            addCardToCol(rowTo, getTopCard(rowFrom));
             // removing the top card from the previous column
-            remove(columnFrom);
+            remove(rowFrom);
         }
     }
 
-    private void addCardToCol(int columnTo, Card cardToMove) {
-        cols.get(columnTo).add(cardToMove);
+    private void addCardToCol(int rowTo, Card rowToMove) {
+        rows.get(rowTo).add(rowToMove);
     }
 
-    private void removeCardFromCol(int colFrom) {
-        this.cols.get(colFrom).remove(this.cols.get(colFrom).size()-1);
+    private void removeCardFromCol(int rowFrom) {
+        this.rows.get(rowFrom).remove(this.rows.get(rowFrom).size()-1);
     }
 }
