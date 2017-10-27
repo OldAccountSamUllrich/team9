@@ -183,6 +183,10 @@ $.ajax({
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
         display(data);},
+  error: function(url, options){
+      console.log("URL: " + url + "\nOptions: " + options);
+      $().removeClass(hidden);
+  },
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
