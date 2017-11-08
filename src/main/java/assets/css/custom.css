@@ -1,3 +1,9 @@
 /* Add additional stylesheets below
 -------------------------------------------------- */
 
+h1{
+    display: block;
+    position: relative;
+    height: 60px;
+    padding-left: 300px;
+}

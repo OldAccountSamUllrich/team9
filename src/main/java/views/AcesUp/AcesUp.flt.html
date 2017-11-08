@@ -11,8 +11,8 @@
         <td >Row 1</td>
     </tr>
 
-    <tr><tr class="columnOfCards" id="c0">
-        <table>
+    <tr class="columnOfCards" id="c0">
+        <table class="r0">
             <tr><td class="cardLocation l0"></td><td class="cardLocation l1"></td><td class="cardLocation l2"></td><td class="cardLocation l3"></td><td class="cardLocation l4"></td>
                 <td class="cardLocation l5"></td><td class="cardLocation l6"></td><td class="cardLocation l7"></td><td class="cardLocation l8"></td><td class="cardLocation l9"></td>
                 <td class="cardLocation l10"></td><td class="cardLocation l11"></td><td class="cardLocation l12"></td><td class="cardLocation l13"></td></tr>
@@ -25,8 +25,10 @@
     <tr>
     </td>
         <td class="columnOfCards" id="c1">
-            <table>
-                <tr><td class="cardLocation l0"></td><td class="cardLocation l1"></td><td class="cardLocation l2"></td><td class="cardLocation l3"></td><td class="cardLocation l4"></td>
+            <table class="r1">
+                <tr><td class="cardLocation l0"></td>
+                    <td class="cardLocation l1"></td>
+                    <td class="cardLocation l2"></td><td class="cardLocation l3"></td><td class="cardLocation l4"></td>
                     <td class="cardLocation l5"></td><td class="cardLocation l6"></td><td class="cardLocation l7"></td><td class="cardLocation l8"></td><td class="cardLocation l9"></td>
                     <td class="cardLocation l10"></td><td class="cardLocation l11"></td><td class="cardLocation l12"></td><td class="cardLocation l13"></td></tr>
             </table>
@@ -36,7 +38,7 @@
         <td >Row 3</td>
     </tr>
         <td class="columnOfCards" id="c2">
-            <table>
+            <table class="r2">
                 <tr><td class="cardLocation l0"></td><td class="cardLocation l1"></td><td class="cardLocation l2"></td><td class="cardLocation l3"></td><td class="cardLocation l4"></td>
                     <td class="cardLocation l5"></td><td class="cardLocation l6"></td><td class="cardLocation l7"></td><td class="cardLocation l8"></td><td class="cardLocation l9"></td>
                     <td class="cardLocation l10"></td><td class="cardLocation l11"></td><td class="cardLocation l12"></td><td class="cardLocation l13"></td></tr>
@@ -46,7 +48,7 @@
         <td >Row 4</td>
     </tr>
         <td class="columnOfCards" id="c3">
-            <table>
+            <table class="r3">
                 <tr><td class="cardLocation l0"></td><td class="cardLocation l1"></td><td class="cardLocation l2"></td><td class="cardLocation l3"></td><td class="cardLocation l4"></td>
                     <td class="cardLocation l5"></td><td class="cardLocation l6"></td><td class="cardLocation l7"></td><td class="cardLocation l8"></td><td class="cardLocation l9"></td>
                     <td class="cardLocation l10"></td><td class="cardLocation l11"></td><td class="cardLocation l12"></td><td class="cardLocation l13"></td></tr>
@@ -62,31 +64,52 @@
 
 <script>
 
-var game;
+var gameX;
 
 function display(game) {
 console.log(game);
+gameX = game;
 
-$( '.columnOfCards .cardLocation' ).html("");
+// $( '.columnOfCards .cardLocation' ).html("");
 
-    $.each(game.cols[0], function( key, val ) {
-        $( '#c0 .l'+key ).html(val.value + val.suit);
+    $.each(game.rows[0], function( key, val ) {
+        console.log(key);
+        var el = $( '.r0 .l'+key );
+        el.html(val.value + val.suit);
+        el.addClass("hasCard");
     });
 
- $.each(game.cols[1], function( key, val ) {
-        $( '#c1 .l'+key ).html(val.value + val.suit);
+ $.each(game.rows[1], function( key, val ) {
+     console.log(key);
+     var el = $( '.r1 .l'+key );
+     el.html(val.value + val.suit);
+     el.addClass("hasCard");
     });
 
- $.each(game.cols[2], function( key, val ) {
-        $( '#c2 .l'+key ).html(val.value + val.suit);
+ $.each(game.rows[2], function( key, val ) {
+     console.log(key);
+     var el = $( '.r2 .l'+key );
+     el.html(val.value + val.suit);
+     el.addClass("hasCard");
     });
 
- $.each(game.cols[3], function( key, val ) {
-        $( '#c3 .l'+key ).html(val.value + val.suit);
+ $.each(game.rows[3], function( key, val ) {
+     console.log(key);
+     var el = $( '.r3 .l'+key );
+     el.html(val.value + val.suit);
+     el.addClass("hasCard");
     });
 
 
 
+}
+
+function numberstoLetters(value){
+    if(value==11) return"J";
+    if(value==12) return"Q";
+    if(value==13) return"K";
+    if(value==14) return"A";
+    else return " " + value;
 }
 
 // Calls ApplicationController.gameGet()
@@ -100,7 +123,7 @@ $("#dealButton").click(function(){
 $.ajax({
   type: "POST",
   url: "/dealGame",
-  data: JSON.stringify(game),
+  data: JSON.stringify(gameX),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
         display(data);},
@@ -114,7 +137,7 @@ function removeCard(colNumber){
 $.ajax({
 type: "POST",
 url: "/removeCard/"+colNumber,
-data: JSON.stringify(game),
+data: JSON.stringify(gameX),
 success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
 game = data;
 display(data);},
@@ -154,7 +177,7 @@ var colTo = $("#to_col").val();
 $.ajax({
   type: "POST",
   url: "/moveCard/"+colFrom+"/"+colTo,
-  data: JSON.stringify(game),
+  data: JSON.stringify(gameX),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
         display(data);},
