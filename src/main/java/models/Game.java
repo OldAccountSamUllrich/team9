@@ -79,7 +79,7 @@ public class Game {
 
 
     public void move(int rowFrom, int rowTo) {
-       /* // remove the top card from the columnFrom column, add it to the columnTo column
+        // remove the top card from the columnFrom column, add it to the columnTo column
         rowFrom--; //To turn the input from base 1- 4 to 0 - 3
         rowTo--;
         if(!columnHasCards(rowTo))
@@ -100,13 +100,13 @@ public class Game {
         {
             addCardToCol(rowTo, getTopCard(rowFrom));
             // removing the top card from the previous column
-            remove(rowFrom);
+            removeCardFromCol(rowFrom);
         }
-    }*/
-        Card cardToMove = getTopCard(rowFrom);
-        this.removeCardFromCol(rowFrom);
-        this.addCardToCol(rowTo,cardToMove);
     }
+        //Card cardToMove = getTopCard(rowFrom);
+        //this.removeCardFromCol(rowFrom);
+       // this.addCardToCol(rowTo,cardToMove);
+    //}
 
     private void addCardToCol(int rowTo, Card rowToMove) {
         rows.get(rowTo).add(rowToMove);
