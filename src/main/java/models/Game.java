@@ -79,6 +79,30 @@ public class Game {
 
 
     public void move(int rowFrom, int rowTo) {
+       /* // remove the top card from the columnFrom column, add it to the columnTo column
+        rowFrom--; //To turn the input from base 1- 4 to 0 - 3
+        rowTo--;
+        if(!columnHasCards(rowTo))
+        {
+            //Check to make sure the move is valid
+            System.out.println("This column has cards. This is an invaild move");
+        }
+        if(rowFrom < 0 || rowFrom > 3 )
+        {
+            //check to make sure the columnFrom is a valid column number
+            System.out.println("In the 'From' field, you have entered a incorrect row number\n Row numbers range from the interger values 1 - 4");
+        }
+        if(rowTo < 0 || rowTo > 3 )
+        {
+            //check to make sure the columnTo is a valid column number
+            System.out.println("In the 'To' field, you have entered a incorrect row number\n Row numbers range from the interger values 1 - 4");
+        }
+        {
+            addCardToCol(rowTo, getTopCard(rowFrom));
+            // removing the top card from the previous column
+            remove(rowFrom);
+        }
+    }*/
         Card cardToMove = getTopCard(rowFrom);
         this.removeCardFromCol(rowFrom);
         this.addCardToCol(rowTo,cardToMove);
