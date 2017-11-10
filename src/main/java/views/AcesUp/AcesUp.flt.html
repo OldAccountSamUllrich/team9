@@ -62,9 +62,15 @@
 
 <BR>Move from row <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>
 
+<p>Cards left in Deck: <span id="deckSizeText"></span></p>
+
 <script>
 
+    //$("#deckSizeText").val(deck.size());
+
 var gameX;
+var cardsLeft = 44;
+//document.getElementByID("deckSizeText").value = cardsLeft;
 
 function display(game) {
 console.log(game);
@@ -126,7 +132,9 @@ $.ajax({
   data: JSON.stringify(gameX),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
-        display(data);},
+        display(data);
+        $("#deckSizeText").html(cardsLeft);
+        cardsLeft = cardsLeft - 4;},
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
