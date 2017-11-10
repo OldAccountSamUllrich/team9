@@ -43,27 +43,25 @@ public class Game {
     }*/
 
     public void remove(int rowNumber) {
-        if(columnHasCards(rowNumber)) {
-            Card c = getTopCard(rowNumber);
-            boolean removeCard = false;
+       if(Game.ableToRemove(rows, rowNumber)){
+           rows.get(rowNumber).remove(rows.get(rowNumber).size()-1);
+       }
+    }
+
+    public static boolean ableToRemove(java.util.List<java.util.List<Card>> rows, int row){
+        if(rows.get(row).size()>0) {
+            java.util.List<Card> removeRow = rows.get(row);
             for (int i = 0; i < 4; i++) {
-                if (i != rowNumber) {
-                    if (columnHasCards(i)) {
-                        Card compare = getTopCard(i);
-                        if (compare.getSuit() == c.getSuit()) {
-                            if (compare.getValue() > c.getValue()) {
-                                removeCard = true;
-                            }
-                        }
-                    }
+                java.util.List<Card> testRow = rows.get(i);
+                if (removeRow.get(removeRow.size() - 1).suit == testRow.get(testRow.size() - 1).suit && removeRow.get(removeRow.size() - 1).value < testRow.get(testRow.size() - 1).value) {
+                    return true;
                 }
             }
-            if (removeCard) {
-                this.rows.get(rowNumber).remove(this.rows.get(rowNumber).size() - 1);
-            }
         }
-
+        return false;
     }
+
+
 
     private boolean columnHasCards(int rowNumber) {
         // check indicated column for number of cards; if no cards return false, otherwise return true
@@ -79,10 +77,39 @@ public class Game {
 
 
     public void move(int rowFrom, int rowTo) {
-        Card cardToMove = getTopCard(rowFrom);
-        this.removeCardFromCol(rowFrom);
-        this.addCardToCol(rowTo,cardToMove);
+        // remove the top card from the columnFrom column, add it to the columnTo column
+        rowFrom--; //To turn the input from base 1- 4 to 0 - 3
+        rowTo--;
+        if(columnHasCards(rowTo))
+        {
+            //Check to make sure the move is valid
+            System.out.println("This column has cards. This is an invaild move");
+        }
+        else if(rowFrom < 0 || rowFrom > 3 )
+        {
+            //check to make sure the columnFrom is a valid column number
+            System.out.println("In the 'From' field, you have entered a incorrect row number\nRow numbers range from the interger values 1 - 4");
+        }
+        else if(rowTo < 0 || rowTo > 3 )
+        {
+            //check to make sure the columnTo is a valid column number
+            System.out.println("In the 'To' field, you have entered a incorrect row number\nRow numbers range from the interger values 1 - 4");
+        }
+        else if(getTopCard(rowFrom).getValue() != 14)
+        {
+            //Check to make sure the Value is an ace
+            System.out.println("You can only move cards which are an ace");
+        }
+        else {
+            addCardToCol(rowTo, getTopCard(rowFrom));
+            // removing the top card from the previous column
+            removeCardFromCol(rowFrom);
+        }
     }
+        //Card cardToMove = getTopCard(rowFrom);
+        //this.removeCardFromCol(rowFrom);
+       // this.addCardToCol(rowTo,cardToMove);
+    //}
 
     private void addCardToCol(int rowTo, Card rowToMove) {
         rows.get(rowTo).add(rowToMove);
