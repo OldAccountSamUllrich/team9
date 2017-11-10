@@ -43,27 +43,25 @@ public class Game {
     }*/
 
     public void remove(int rowNumber) {
-        if(columnHasCards(rowNumber)) {
-            Card c = getTopCard(rowNumber);
-            boolean removeCard = false;
+       if(Game.ableToRemove(rows, rowNumber)){
+           rows.get(rowNumber).remove(rows.get(rowNumber).size()-1);
+       }
+    }
+
+    public static boolean ableToRemove(java.util.List<java.util.List<Card>> rows, int row){
+        if(rows.get(row).size()>0) {
+            java.util.List<Card> removeRow = rows.get(row);
             for (int i = 0; i < 4; i++) {
-                if (i != rowNumber) {
-                    if (columnHasCards(i)) {
-                        Card compare = getTopCard(i);
-                        if (compare.getSuit() == c.getSuit()) {
-                            if (compare.getValue() > c.getValue()) {
-                                removeCard = true;
-                            }
-                        }
-                    }
+                java.util.List<Card> testRow = rows.get(i);
+                if (removeRow.get(removeRow.size() - 1).suit == testRow.get(testRow.size() - 1).suit && removeRow.get(removeRow.size() - 1).value < testRow.get(testRow.size() - 1).value) {
+                    return true;
                 }
             }
-            if (removeCard) {
-                this.rows.get(rowNumber).remove(this.rows.get(rowNumber).size() - 1);
-            }
         }
-
+        return false;
     }
+
+
 
     private boolean columnHasCards(int rowNumber) {
         // check indicated column for number of cards; if no cards return false, otherwise return true
