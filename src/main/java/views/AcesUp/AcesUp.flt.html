@@ -72,7 +72,8 @@ gameX = game;
     $.each(game.rows[0], function( key, val ) {
         console.log(key);
         var el = $( '.r0 .l'+key );
-        el.html(val.value + val.suit);
+        el.html("<img src=\"2_of_clubs\" style=\"width:100px;height:150px;\">");
+        //el.html(val.value + val.suit);
         el.addClass("hasCard");
     });
 
