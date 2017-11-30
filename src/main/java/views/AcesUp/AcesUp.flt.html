@@ -62,6 +62,7 @@
 
 var gameX;
 var cardsLeft = 44;
+//var num = val.value;
 
 function display(game) {
 console.log(game);
@@ -71,29 +72,33 @@ gameX = game;
 
     $.each(game.rows[0], function( key, val ) {
         console.log(key);
+        var newCard = numberstoLetters(val.value);
         var el = $( '.r0 .l'+key );
-        el.html(val.value + val.suit);
+        el.html(newCard + val.suit);
         el.addClass("hasCard");
     });
 
  $.each(game.rows[1], function( key, val ) {
      console.log(key);
+     var newCard = numberstoLetters(val.value);
      var el = $( '.r1 .l'+key );
-     el.html(val.value + val.suit);
+     el.html(newCard + val.suit);
      el.addClass("hasCard");
     });
 
  $.each(game.rows[2], function( key, val ) {
      console.log(key);
+     var newCard = numberstoLetters(val.value);
      var el = $( '.r2 .l'+key );
-     el.html(val.value + val.suit);
+     el.html(newCard + val.suit);
      el.addClass("hasCard");
     });
 
  $.each(game.rows[3], function( key, val ) {
      console.log(key);
+     var newCard = numberstoLetters(val.value);
      var el = $( '.r3 .l'+key );
-     el.html(val.value + val.suit);
+     el.html(newCard + val.suit);
      el.addClass("hasCard");
     });
 
@@ -101,7 +106,9 @@ gameX = game;
 
 }
 
-function numberstoLetters(value){
+function numberstoLetters(value)
+{
+   // if(value==10) return"&spades;";
     if(value==11) return"J";
     if(value==12) return"Q";
     if(value==13) return"K";
