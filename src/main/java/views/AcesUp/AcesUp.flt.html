@@ -12,7 +12,7 @@
     <br> </br>
     <tr class="columnOfCards" id="c0">
         <table class="r0">
-            <tr><td >Row 1</td><td class="cardLocation l0"></td><td class="cardLocation l1"></td><td class="cardLocation l2"></td><td class="cardLocation l3"></td><td class="cardLocation l4"></td>
+            <tr><td class="text">Row 1</td><td class="cardLocation l0"></td><td class="cardLocation l1"></td><td class="cardLocation l2"></td><td class="cardLocation l3"></td><td class="cardLocation l4"></td>
                 <td class="cardLocation l5"></td><td class="cardLocation l6"></td><td class="cardLocation l7"></td><td class="cardLocation l8"></td><td class="cardLocation l9"></td>
                 <td class="cardLocation l10"></td><td class="cardLocation l11"></td><td class="cardLocation l12"></td><td class="cardLocation l13"></td></tr>
         </table>
@@ -23,7 +23,7 @@
     <tr>
         <td class="columnOfCards" id="c1">
             <table class="r1">
-                <tr><td >Row 2</td><td class="cardLocation l0"></td>
+                <tr><td class="text">Row 2</td><td class="cardLocation l0"></td>
                     <td class="cardLocation l1"></td>
                     <td class="cardLocation l2"></td><td class="cardLocation l3"></td><td class="cardLocation l4"></td>
                     <td class="cardLocation l5"></td><td class="cardLocation l6"></td><td class="cardLocation l7"></td><td class="cardLocation l8"></td><td class="cardLocation l9"></td>
@@ -35,7 +35,7 @@
     <br> </br>
         <td class="columnOfCards" id="c2">
             <table class="r2">
-                <tr><td >Row 3</td><td class="cardLocation l0"></td><td class="cardLocation l1"></td><td class="cardLocation l2"></td><td class="cardLocation l3"></td><td class="cardLocation l4"></td>
+                <tr><td class="text">Row 3</td><td class="cardLocation l0"></td><td class="cardLocation l1"></td><td class="cardLocation l2"></td><td class="cardLocation l3"></td><td class="cardLocation l4"></td>
                     <td class="cardLocation l5"></td><td class="cardLocation l6"></td><td class="cardLocation l7"></td><td class="cardLocation l8"></td><td class="cardLocation l9"></td>
                     <td class="cardLocation l10"></td><td class="cardLocation l11"></td><td class="cardLocation l12"></td><td class="cardLocation l13"></td></tr>
             </table>
@@ -44,7 +44,7 @@
     <br> </br>
         <td class="columnOfCards" id="c3">
             <table class="r3">
-                <tr><td >Row 4</td><td class="cardLocation l0"></td><td class="cardLocation l1"></td><td class="cardLocation l2"></td><td class="cardLocation l3"></td><td class="cardLocation l4"></td>
+                <tr><td class="text">Row 4</td><td class="cardLocation l0"></td><td class="cardLocation l1"></td><td class="cardLocation l2"></td><td class="cardLocation l3"></td><td class="cardLocation l4"></td>
                     <td class="cardLocation l5"></td><td class="cardLocation l6"></td><td class="cardLocation l7"></td><td class="cardLocation l8"></td><td class="cardLocation l9"></td>
                     <td class="cardLocation l10"></td><td class="cardLocation l11"></td><td class="cardLocation l12"></td><td class="cardLocation l13"></td></tr>
             </table>
@@ -52,21 +52,24 @@
 </table>
 
 <button id="dealButton">Deal</button>
-<BR>Remove from: <button id="Remove1">Row1</button><button id="Remove2">Row2</button><button id="Remove3">Row3</button><button id="Remove4">Row4</button>
+<p class="text">Remove from: <button id="Remove1">Row1</button><button id="Remove2">Row2</button><button id="Remove3">Row3</button><button id="Remove4">Row4</button></p>
 
-<BR>Move from row <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>
+<p class="text">Move from row <input type="text" id="from_col"  /> <a class="text"> to </a> <input type="text" id="to_col"  /> <button id="moveButton">Move</button></p>
 
-<p>Cards left in Deck: <span id="deckSizeText"></span></p>
+<p class="text">Cards left in Deck: <span id="deckSizeText"></span></p>
 
 <script>
 
 var gameX;
-var cardsLeft = 44;
+var cardsLeft = 48;
 
 function display(game) {
 console.log(game);
 gameX = game;
-
+$("#deckSizeText").html(cardsLeft);
+if(cardsLeft == 48){
+    cardsLeft = cardsLeft - 4;
+}
 // $( '.columnOfCards .cardLocation' ).html("");
 
     $.each(game.rows[0], function( key, val ) {
@@ -125,7 +128,9 @@ $.ajax({
         game = data;
         display(data);
         $("#deckSizeText").html(cardsLeft);
-        cardsLeft = cardsLeft - 4;},
+        if(cardsLeft != 0){
+              cardsLeft = cardsLeft - 4;
+        }},
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });

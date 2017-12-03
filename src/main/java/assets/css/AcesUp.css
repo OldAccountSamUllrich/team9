@@ -39,6 +39,11 @@ width: 100px;
 background-color:#F0F0F0;
 }
 
+.text{
+    font-weight: bold;
+    color: white;
+}
+
 #error-backdrop {
     position: fixed;
     top: 0;
