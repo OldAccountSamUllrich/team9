@@ -49,14 +49,24 @@ public class testGame {
         assertEquals("5Clubs",g.columns.get(3).cards.get(0).toString());
     }*/
 
-    /*@Test
+    @Test //Andrew Unit Test
     public void testRemoveFunction(){
         Game g = new Game();
-        g.deck.customDeal(0,3,6,9);
-        g.remove(2);
-        assertEquals(0,g.columns.get(2).cards.size());
-    }*/
+        //g.deck.dealfour(g.rows);
+        //create cards for rows
+        Card c1 = new Card(4,Suit.Clubs);
+        g.rows.get(0).add(c1);
+        Card c2 = new Card(2,Suit.Clubs);
+        g.rows.get(1).add(c2);
+        Card c3 = new Card(2,Suit.Hearts);
+        g.rows.get(2).add(c3);
+        Card c4 = new Card(5,Suit.Hearts);
+        g.rows.get(3).add(c4);
 
+        g.remove(1);
+        assertEquals(0,g.rows.get(1).cards.size());
+    }
 
+    //can add test to check if column has cards returns true or false
 
 }
