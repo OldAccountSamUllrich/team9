@@ -23,24 +23,7 @@ public class Game { //hey there buddy
         deck = new Deck();
     }
 
-
-   /* public void shuffle() {
-        // shuffles the deck so that it is random
-        long seed= System.nanoTime();
-        Collections.shuffle(deck, new Random(seed));
-
-
-    }*/
-
-   /* public void dealFour()
-    {
-        // remove the top card from the deck and add it to a column; repeat for each of the four columns
-        for (int i = 0; i < 4; i++)
-        {
-            rows.get(i).add(deck.get(deck.size()-1));
-            deck.remove(deck.size()-1);
-        }
-    }*/
+    
 
     public void remove(int rowNumber) {
        if(Game.ableToRemove(rows, rowNumber)){
