@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Assignment 1: Each of the blank methods below require implementation to get AcesUp to build/run
  */
-public class Game { //hey there buddy
+public class Game {
 
     public java.util.List<java.util.List<Card>> rows = new ArrayList<>(4);
 
