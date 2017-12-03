@@ -63,12 +63,15 @@
 <script>
 
 var gameX;
-var cardsLeft = 44;
+var cardsLeft = 48;
 //var num = val.value;
 
 function display(game) {
 console.log(game);
 gameX = game;
+$("#deckSizeText").html(cardsLeft);
+if(cardsLeft == 48 || cardsLeft == 46){
+        cardsLeft = cardsLeft - 4;
 
 // $( '.columnOfCards .cardLocation' ).html("");
 $('.hasCard').html("")
