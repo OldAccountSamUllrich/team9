@@ -69,46 +69,63 @@ console.log(game);
 gameX = game;
 
 // $( '.columnOfCards .cardLocation' ).html("");
+$('.hasCard').html("")
+$('.hasCard').removeClass("hasCard")
 
-    $.each(game.rows[0], function( key, val ) {
+    $.each(game.rows[0], function( key, val )
+    {
         console.log(key);
-        var newCard = numberstoLetters(val.value);
+
+        var rank = numberstoLetters(val.value);
+        var pips = numberstoSymbol(val.suit);
         var el = $( '.r0 .l'+key );
-        el.html(newCard + val.suit);
+        el.html(rank + pips);
         el.addClass("hasCard");
     });
 
- $.each(game.rows[1], function( key, val ) {
+ $.each(game.rows[1], function( key, val )
+ {
      console.log(key);
-     var newCard = numberstoLetters(val.value);
+     var rank = numberstoLetters(val.value);
+     var pips = numberstoSymbol(val.suit);
      var el = $( '.r1 .l'+key );
-     el.html(newCard + val.suit);
+     el.html(rank + pips);
      el.addClass("hasCard");
     });
 
  $.each(game.rows[2], function( key, val ) {
      console.log(key);
-     var newCard = numberstoLetters(val.value);
+     var rank = numberstoLetters(val.value);
+     var pips = numberstoSymbol(val.suit);
      var el = $( '.r2 .l'+key );
-     el.html(newCard + val.suit);
+     el.html(rank + pips);
      el.addClass("hasCard");
     });
 
  $.each(game.rows[3], function( key, val ) {
      console.log(key);
-     var newCard = numberstoLetters(val.value);
+     var rank = numberstoLetters(val.value);
+     var pips = numberstoSymbol(val.suit);
      var el = $( '.r3 .l'+key );
-     el.html(newCard + val.suit);
+     el.html(rank + pips);
      el.addClass("hasCard");
     });
 
-
-
 }
+//Hearts, Spades, Diamonds, Clubs
+
+function numberstoSymbol(suit)
+{
+    if(suit=="Spades") return"&spades;";
+    if(suit=="Hearts") return"&hearts;";
+    if(suit=="Diamonds") return"&diams;";
+    if(suit=="Clubs") return"&clubs;";
+    else return " " + suit;
+}
+
 
 function numberstoLetters(value)
 {
-   // if(value==10) return"&spades;";
     if(value==11) return"J";
     if(value==12) return"Q";
     if(value==13) return"K";
