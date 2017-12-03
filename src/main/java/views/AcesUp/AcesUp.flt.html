@@ -70,8 +70,9 @@ function display(game) {
 console.log(game);
 gameX = game;
 $("#deckSizeText").html(cardsLeft);
-if(cardsLeft == 48 || cardsLeft == 46){
-        cardsLeft = cardsLeft - 4;
+if(cardsLeft == 48 || cardsLeft == 46) {
+    cardsLeft = cardsLeft - 4;
+}
 
 // $( '.columnOfCards .cardLocation' ).html("");
 $('.hasCard').html("")
@@ -154,8 +155,8 @@ $.ajax({
         game = data;
         display(data);
         $("#deckSizeText").html(cardsLeft);
-        if(cardsLeft != 2){cardsLeft = cardsLeft - 4;}
-        else {cardsLeft = cardsLeft - 2;}},
+        if(cardsLeft >= 4){cardsLeft = cardsLeft - 4;}
+        else if(cardsLeft == 2){cardsLeft = cardsLeft - 2;}},
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
