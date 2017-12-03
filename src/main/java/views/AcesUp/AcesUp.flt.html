@@ -52,6 +52,8 @@
 </table>
 
 <button id="dealButton">Deal</button>
+<button id="englishButton">English Set</button>
+<button id="spanishButton">Spanish Set</button>
 <BR>Remove from: <button id="Remove1">Row1</button><button id="Remove2">Row2</button><button id="Remove3">Row3</button><button id="Remove4">Row4</button>
 
 <BR>Move from row <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>
@@ -155,6 +157,33 @@ $.ajax({
 });
 });
 
+$("#englishButton").click(function(){
+    location.reload();
+    $.ajax({
+        type: "POST",
+        url: "/gameMode/1",
+        data: JSON.stringify(gameX),
+        success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+            game = data;
+            display(data);},
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+    });
+});
+
+$("#spanishButton").click(function(){
+    location.reload();
+    $.ajax({
+        type: "POST",
+        url: "/gameMode/2",
+        data: JSON.stringify(gameX),
+        success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+            game = data;
+            display(data);},
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+    });
+});
 
 function removeCard(colNumber){
 $.ajax({
