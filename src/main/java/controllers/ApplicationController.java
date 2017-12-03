@@ -30,7 +30,7 @@ public class ApplicationController {
     public Result index() {
         return Results.html().template("views/AcesUp/AcesUp.flt.html");
     }
-    
+    public static int gameModeNum;
     public Result gameGet(){
         Game g = new Game();
         g.deck.dealFour(g.rows);
@@ -52,6 +52,11 @@ public class ApplicationController {
 
     public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, Game g) {
         g.move(colFrom, colTo);
+        return Results.json().render(g);
+    }
+
+    public Result gameMode(Context context, @PathParam("modeNumber") int gameModeNumber, Game g){
+        gameModeNum = gameModeNumber;
         return Results.json().render(g);
     }
 
