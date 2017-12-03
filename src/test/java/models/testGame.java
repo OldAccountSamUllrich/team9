@@ -12,7 +12,7 @@ public class testGame {
         Game g = new Game();
         g.deck.dealFour(g.rows);
         g.move(0,1);
-        assertEquals(1,g.rows.get(0).size()); //Test to make sure 
+        assertEquals(1,g.rows.get(0).size()); //Test to make sure you can't move the card if the spot is full. 
     }
 
     @Test
